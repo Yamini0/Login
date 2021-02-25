@@ -3,6 +3,11 @@
     "name": "login1",
     "slug": "login1",
     "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,9 +24,6 @@
     "ios": {
       "supportsTablet": true
     },
-    
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "description": "splash screen which navigate to 1st page(login page)"
   }
 }

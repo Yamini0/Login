@@ -23,14 +23,12 @@ export default class Splash extends React.Component {
             <View>
 
                 <ImageBackground
-                    source={require("../images/travel-2.jpg")}
-                    style={{ width: "100%", height: "100%" }}
+                    source={require("../images/spBg.jpg")}
+                    style={{ width: "100%", height: "100%", opacity: 0.8 }}
                 >
-                    <View style={{ backgroundColor: "rgba(255, 0, 0, 0.2)", width: "100%", height: "100%", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                        <Image source={require("../assets/logo.png")} style={{ width: 100, height: 100, borderRadius: 30 }} />
-                        <Text style={{ color: "white" }}>Travel..</Text>
-                        <Text style={{ color: "white" }}>Explore..</Text>
-                        <Text style={{ color: "white" }}>Memories..</Text>
+                    <View style={{ width: "100%", height: "100%", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                        <Image source={require("../assets/atom.png")} style={{ width: 100, height: 100, borderRadius: 30, backgroundColor: "white", opacity: 0.9}} />
+                        <Text style={{ color: "white" }}>Loading...</Text>
                     </View>
                 </ImageBackground>
 
@@ -43,7 +41,7 @@ export default class Splash extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // marginTop: 22,
+        marginTop: 22,
         backgroundColor: "#008BEF",
         alignItems: "center",
         justifyContent: "center"

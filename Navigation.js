@@ -3,20 +3,28 @@ import { Text, View, Image } from "react-native";
 //import { Icon, Drawer, Item as FormItem } from "native-base";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from 'react-navigation'
-import FirstPage from "./screens/FirstPage";
+import LoginPage from "./screens/LoginPage";
+import ProfileScreen from "./screens/ProfileScreen"
 
 const AppNavigator = createStackNavigator(
     {
 
-        FirstPage: {
-            screen: FirstPage,
+        LoginPage: {
+            screen: LoginPage,
             navigationOptions: {
-                tabBarLabel: "FirstPage",
-                // color:"#1A5CAD",
+                tabBarLabel: "Login Page",
+                color:"#1A5CAD",
                 //tabBarActiveTintColor
-                tabBarIcon: ({ tintColor }) => (
-                    <Icon name="ios-home" size={20} style={{ color: "white" }} />
-                )
+                
+            }
+        },
+        Profile: {
+            screen: ProfileScreen,
+            navigationOptions: {
+                tabBarLabel: "ProfileScreen",
+                color:"#1A5CAD",
+                //tabBarActiveTintColor
+                
             }
         },
 
@@ -24,13 +32,13 @@ const AppNavigator = createStackNavigator(
     {
         tabBarOptions: {
             activeTintColor: "#74442D",
-            inactiveTintColor: "gray",
+            inactiveTintColor: "grey",
             style: {
                 backgroundColor: "white"
             }
         },
 
-        initialRouteName: "FirstPage"
+        initialRouteName: "LoginPage"
     }
 );
 

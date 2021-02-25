@@ -9,7 +9,7 @@ export default class Main extends React.Component {
         this.state = { currentScreen: 'Splash' };
         setTimeout(() => {
             this.setState({ currentScreen: "AppNavigator" })
-        }, 2000)
+        }, 3000)
     }
 
     render() {
@@ -17,7 +17,6 @@ export default class Main extends React.Component {
         let mainScreen = currentScreen === "Splash" ? <Splash/> : <AppNavigator/>;
         return mainScreen;
     }
-
 
 }
 
