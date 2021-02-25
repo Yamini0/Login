@@ -26,10 +26,6 @@ export default class ProfileScrren extends React.Component {
                     source={require("../images/3_bg.jpg")}
                     style={{ width: "100%", height: "100%", opacity: 0.8 }}
                 >
-                    <View style={{ width: "100%", height: "100%", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                        <Image source={require("../assets/atom.png")} style={{ width: 100, height: 100, borderRadius: 30, backgroundColor: "white", opacity: 0.9}} />
-                        <Text style={{ color: "white" }}>Loading...</Text>
-                    </View>
                 </ImageBackground>
 
             </View>

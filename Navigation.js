@@ -4,7 +4,7 @@ import { Text, View, Image } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from 'react-navigation'
 import LoginPage from "./screens/LoginPage";
-import ProfileScreen from "./screens/ProfileScreen"
+import ProfileScreen from "./screens/ProfileScreen";
 
 const AppNavigator = createStackNavigator(
     {
@@ -14,11 +14,10 @@ const AppNavigator = createStackNavigator(
             navigationOptions: {
                 tabBarLabel: "Login Page",
                 color:"#1A5CAD",
-                //tabBarActiveTintColor
-                
+                //tabBarActiveTintColor 
             }
         },
-        Profile: {
+        ProfileScreen: {
             screen: ProfileScreen,
             navigationOptions: {
                 tabBarLabel: "ProfileScreen",

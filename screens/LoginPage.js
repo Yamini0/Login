@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground , Image, TextInput, Dimensions, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { View, ImageBackground , Image, TextInput, Dimensions, TouchableOpacity, StyleSheet, Text, Button} from 'react-native'
 
 //react-native logo
 import logo from "../assets/atom.png";
@@ -65,8 +65,8 @@ export default class LoginPage extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.btnLogin}
-                   onPress={
-                       () => this.props.navigation.navigate(' ProfileScreen ')}>
+                   onPress={() =>
+                    this.props.navigation.navigate( 'ProfileScreen' )}>
                     <Text style={styles.Text}>Login</Text>
                 </TouchableOpacity>
             </ImageBackground>
