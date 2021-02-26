@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground , Image, TextInput, Dimensions, TouchableOpacity, StyleSheet, Text, Button} from 'react-native'
+import { View, ImageBackground , Image, TextInput, Dimensions, TouchableOpacity, StyleSheet, Text, Button, Animated} from 'react-native'
 
 //react-native logo
 import logo from "../assets/atom.png";
@@ -16,7 +16,9 @@ export default class LoginPage extends Component {
         super()
         this.state = {
             showPass: true,
-            press: false
+            press: false,
+            username: '',
+            password: ''
         }
     }
 
@@ -27,23 +29,53 @@ export default class LoginPage extends Component {
             this.setState({ showPass: true, press: false})
         }
     }
+
+    validate_field = () => {
+        const{username, password} = this.state
+        if(username === "" && password === ""){
+            alert("Please login with valid Credentials.")
+            return false
+        }else if( password == "" ){
+            alert("Password is empty.")
+            return false
+        }else if(username == ""){
+            alert("Username is empty.")
+            return false
+        }
+        return true
+    }
+
+    making_alert = () => {
+        if(this.validate_field()){
+            return (this.props.navigation.navigate( 'ProfileScreen' ))
+        }
+    }
+
+
     render() {
         return(
+            //logo div
             <ImageBackground source={require("../images/Login_bg.jpg")} style={styles.backgroundContainer} >
                 <View style={styles.LogoContainer}>
                     <Image source={logo} style={styles.logo}/>
                     <Text style={styles.LogoText}>React-Native</Text>
                 </View>
                 
+
                 <View style={styles.inputContainer}>
                 <Ionicons name={'md-person-outline'} size={22} color={'black'}
-                    style={styles.inputIcon} />
+                    style={styles.inputIcon}  />
                 <TextInput 
                     style={styles.input}
                     placeholder={'Username'}
                     placeholderTextColor={'black'}
                     underlineColorAndroid='transparent'
+                    onChangeText={ (value) => this.validate({username : value})}
+                    onChangeText ={ (value) => this.setState({username : value})}
                 />
+                <Animated>
+                <Text style={styles.ErrorMsg}>Invalid Username.</Text>
+                </Animated>
                 </View>
 
                 <View style={styles.inputContainer}>
@@ -55,7 +87,12 @@ export default class LoginPage extends Component {
                     secureTextEntry={this.state.showPass}
                     placeholderTextColor={'black'}
                     underlineColorAndroid='transparent'
+                    onChangeText ={ (value) => this.setState({password : value}) }
                 />
+                <Animated>
+                <Text style={styles.ErrorMsg}>Password should be 6 character long.</Text>
+                </Animated>
+
                 <TouchableOpacity style={styles.btnEye}
                     onPress={this.showPass.bind(this)}>
                     <Ionicons name={this.state.press == false ? 'md-eye-off-outline' : 'md-eye-outline'} size={22} 
@@ -65,14 +102,17 @@ export default class LoginPage extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.btnLogin}
-                   onPress={() =>
-                    this.props.navigation.navigate( 'ProfileScreen' )}>
+                   onPress={() => this.making_alert()}>
                     <Text style={styles.Text}>Login</Text>
                 </TouchableOpacity>
+
             </ImageBackground>
+
+            
         );
     }
 }
+
 const styles = StyleSheet.create({
     backgroundContainer: {
         flex: 1,
@@ -123,7 +163,7 @@ const styles = StyleSheet.create({
         width: WIDTH - 295,
         height: 45,
         borderRadius: 45,
-        backgroundColor: '#fc7a00',
+        backgroundColor: '#e95203',
         justifyContent: 'center',
         marginTop:20,
         padding: 25,
@@ -134,5 +174,13 @@ const styles = StyleSheet.create({
         fontSize: 32,
         textAlign: 'center',
         fontWeight: "bold"
+        
+    },
+    ErrorMsg: {
+        color: '#3c0b01',
+        paddingLeft: 45,
+        fontSize: 16
     }
 });
+//onPress={() =>
+//this.props.navigation.navigate( 'ProfileScreen' )}

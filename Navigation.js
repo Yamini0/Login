@@ -3,14 +3,14 @@ import { Text, View, Image } from "react-native";
 //import { Icon, Drawer, Item as FormItem } from "native-base";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from 'react-navigation'
-import LoginPage from "./screens/LoginPage";
+import Login1 from "./screens/Login1";
 import ProfileScreen from "./screens/ProfileScreen";
 
 const AppNavigator = createStackNavigator(
     {
 
-        LoginPage: {
-            screen: LoginPage,
+        Login1: {
+            screen: Login1,
             navigationOptions: {
                 tabBarLabel: "Login Page",
                 color:"#1A5CAD",
@@ -37,7 +37,7 @@ const AppNavigator = createStackNavigator(
             }
         },
 
-        initialRouteName: "LoginPage"
+        initialRouteName: "Login1"
     }
 );
 
