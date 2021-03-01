@@ -9,11 +9,11 @@ import ProfileScreen from "./screens/ProfileScreen";
 const AppNavigator = createStackNavigator(
     {
 
-        Login1: {
+        Login: {
             screen: Login1,
             navigationOptions: {
                 tabBarLabel: "Login Page",
-                color:"#1A5CAD",
+                color: "#1A5CAD",
                 //tabBarActiveTintColor 
             }
         },
@@ -21,9 +21,9 @@ const AppNavigator = createStackNavigator(
             screen: ProfileScreen,
             navigationOptions: {
                 tabBarLabel: "ProfileScreen",
-                color:"#1A5CAD",
+                color: "#1A5CAD",
                 //tabBarActiveTintColor
-                
+
             }
         },
 
@@ -37,7 +37,7 @@ const AppNavigator = createStackNavigator(
             }
         },
 
-        initialRouteName: "Login1"
+        initialRouteName: "Login"
     }
 );
 

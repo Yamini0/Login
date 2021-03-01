@@ -1,47 +1,52 @@
-import React from "react";
-import {
-    View,
-    StyleSheet,
-    ScrollView,
-    Image,
-    Dimensions,
-    ImageBackground,
-    AsyncStorage, Text
-} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, ImageBackground , Image, TextInput, Dimensions, TouchableOpacity, Alert, StyleSheet, Text, Animated, Easing} from 'react-native'
+import logo from "../assets/atom.png";
 // import * as Font from 'expo-font';
+const ProfileScreen =() => {
+    const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
+  const spin = spinAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
 
-export default class ProfileScrren extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            fontLoaded: false
-        }
-    }
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinAnim, {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
+    ).start();
+  });
 
-    render() {
-        return (
-            <View>
+return(
+    <ImageBackground  style={styles.backgroundContainer} >
 
-                <ImageBackground
-                    source={require("../images/3_bg.jpg")}
-                    style={{ width: "100%", height: "100%", opacity: 0.8 }}
-                >
-                </ImageBackground>
+                <View style={styles.LogoContainer}>
+                    <Animated.Image source={logo} style={styles.logo} style={{height: 100, width: 100, transform: [{rotate: spin}]}}/>
+                    <Text style={styles.LogoText}>React-Native</Text>
+                </View>
+    </ImageBackground>
+ ) 
 
-            </View>
-
-        );
-    }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    backgroundContainer: {
         flex: 1,
-        // marginTop: 22,
-        backgroundColor: "#008BEF",
-        alignItems: "center",
-        justifyContent: "center"
+        width: null,
+        height: null,
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity: 0.6,
+        backgroundColor: "#fafaff"
+    },
+    LogoContainer: {
+        alignItems: 'center',
+        marginBottom: 50,
     }
 });
 
 
+export default ProfileScreen;
