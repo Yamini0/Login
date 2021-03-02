@@ -1,23 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Splash from "./screens/Splash";
 import AppNavigator from "./Navigation";
 
+export default function Main() {
+  const [splash, setSplash] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setSplash(false);
+    }, 3000);
+  }, []);
 
-export default class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { currentScreen: 'Splash' };
-        setTimeout(() => {
-            this.setState({ currentScreen: "AppNavigator" })
-        }, 3000)
-    }
-
-    render() {
-        const { currentScreen } = this.state;
-        let mainScreen = currentScreen === "Splash" ? <Splash/> : <AppNavigator/>;
-        return mainScreen;
-    }
-
+  return splash ? <Splash /> : <AppNavigator />;
 }
-
-
