@@ -32,7 +32,7 @@ const Login1 = ({ navigation }) => {
     outputRange: ["0deg", "360deg"],
   });
 
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     username: "",
     password: "",
     check_textInputChange: false,

@@ -11,8 +11,12 @@ import {
   Text,
   Animated,
   Easing,
+  SafeAreaView,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import logo from "../assets/atom.png";
+import DrawerNavigator from "../DrawerNav";
+
 // import * as Font from 'expo-font';
 const ProfileScreen = ({ navigation }) => {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
@@ -34,6 +38,12 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <ImageBackground style={styles.backgroundContainer}>
+      <TouchableOpacity
+        style={{ alignItems: "flex-end", margin: 16 }}
+        onPress={() => navigation.navigate("openDrawer")}
+      >
+        <Ionicons name={"md-menu"} size={30} color={"black"} />
+      </TouchableOpacity>
       <View style={styles.LogoContainer}>
         <Animated.Image
           source={logo}
