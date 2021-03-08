@@ -2,11 +2,7 @@ import "react-native-gesture-handler";
 import React from "react";
 import { View, Icon, TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  createAppContainer,
-  createSwitchNavigator,
-  DrawerActions,
-} from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -17,6 +13,17 @@ import ProfileScreen from "./screens/ProfileScreen";
 import SettingScreen from "./screens/SettingScreen";
 import CoachScreen from "./screens/CoachScreen";
 import ExploreScreen from "./screens/ExploreScreen";
+import HomeScreen from "./screens/HomeScreen";
+
+import EditProfile from "./screens/DrawerScreens/EditProfile";
+import Feedback from "./screens/DrawerScreens/Feedback";
+import Logout from "./screens/DrawerScreens/Logout";
+import Notification from "./screens/DrawerScreens/Notification";
+import PaymentHistory from "./screens/DrawerScreens/PaymentHistory";
+import Plans from "./screens/DrawerScreens/Plans";
+import ReferFriend from "./screens/DrawerScreens/ReferFriend";
+import TalkTrainer from "./screens/DrawerScreens/TalkTrainer";
+import ManageSub from "./screens/DrawerScreens/ManageSub";
 
 const LoginStack = createStackNavigator({
   Login: {
@@ -28,28 +35,107 @@ const LoginStack = createStackNavigator({
     },
   },
 });
+
+//profile-stack
 const ProfileStack = createStackNavigator({
   ProfileScreen: {
     screen: ProfileScreen,
-    navigationOptions: {
-      title: "Profile",
-      tabBarLabel: "Profile",
-      color: "#1A5CAD",
+    navigationOptions: (props) => ({
       headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("openDrawer")}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.toggleDrawer();
+          }}
+        >
           <Ionicons name={"md-menu"} size={30} color={"black"} />
         </TouchableOpacity>
       ),
+    }),
+  },
+});
+{
+  /*
+const SettingStack = createStackNavigator({
+  EditProfile: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  PaymentHistory: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  OurPlans: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  Notification: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  ReferAFriend: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  ManageSubscription: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  GiveUsFeedBack: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  TlkToTrainer: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+  LogOut: {
+    screen: SettingScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
       //tabBarActiveTintColor
     },
   },
 });
-
+*/
+}
 //bottomTab
 const BottomTabPage = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: SettingScreen,
+      screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: () => {
           return <Ionicons name={"md-home"} size={22} color={"white"} />;
@@ -94,18 +180,157 @@ const BottomTabPage = createMaterialBottomTabNavigator(
     barStyle: { backgroundColor: "black" },
   }
 );
-const DrawerNavigator = createDrawerNavigator({
-  Settings: {
-    screen: BottomTabPage,
+
+//Drawer-navigation
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Settings: {
+      screen: BottomTabPage,
+      navigationOptions: {
+        drawerLabel: "Settings",
+      },
+    },
+    EditProfile: {
+      screen: EditProfile,
+      navigationOptions: {
+        drawerLabel: "Edit profile",
+        fontWeight: "bold",
+        contentOptions: {
+          activeTintColor: "#e91e63",
+          itemsContainerStyle: {
+            marginVertical: 0,
+          },
+        },
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-pencil-outline"} size={20} color={"black"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    PaymentHistory: {
+      screen: PaymentHistory,
+      navigationOptions: {
+        drawerLabel: "Payment History",
+        drawerStyle: {
+          fontsize: 20,
+        },
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-card-outline"} size={20} color={"black"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    OurPlans: {
+      screen: Plans,
+      navigationOptions: {
+        drawerLabel: "Our Plans",
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-bulb-outline"} size={20} color={"black"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    Notification: {
+      screen: Notification,
+      navigationOptions: {
+        drawerLabel: "Notifications",
+        drawerIcon: () => {
+          return (
+            <Ionicons
+              name={"md-notifications-outline"}
+              size={20}
+              color={"black"}
+            />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    ReferAFriend: {
+      screen: ReferFriend,
+      navigationOptions: {
+        drawerLabel: "Refer a friend",
+        drawerIcon: () => {
+          return (
+            <Ionicons
+              name={"md-person-add-outline"}
+              size={20}
+              color={"black"}
+            />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    ManageSubscription: {
+      screen: ManageSub,
+      navigationOptions: {
+        drawerLabel: "Manage subscription",
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-cash-outline"} size={20} color={"black"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    GiveUsFeedBack: {
+      screen: Feedback,
+      navigationOptions: {
+        drawerLabel: "Give us feedback",
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-star-half-outline"} size={20} color={"black"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    TalkToTrainer: {
+      screen: TalkTrainer,
+      navigationOptions: {
+        drawerLabel: "Talk to a Trainer",
+        drawerIcon: () => {
+          return (
+            <Ionicons
+              name={"md-chatbubbles-outline"}
+              size={20}
+              color={"black"}
+            />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
+    LogOut: {
+      screen: Logout,
+      navigationOptions: {
+        drawerLabel: "Log out",
+        drawerIcon: () => {
+          return (
+            <Ionicons name={"md-log-out-outline"} size={20} color={"red"} />
+          );
+        },
+        //tabBarActiveTintColor
+      },
+    },
   },
-});
+  {
+    drawerWidth: 300,
+    drawerBackgroundColor: "#fff",
+    drawerPosition: "left",
+  }
+);
 
 const AppNavigator = createSwitchNavigator({
   Login: { screen: LoginStack },
-  Profile: {
-    screen: DrawerNavigator,
-    path: "onBoarding",
-  },
+  Tabs: { screen: DrawerNavigator },
 });
 
 export default createAppContainer(AppNavigator);

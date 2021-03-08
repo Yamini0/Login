@@ -17,7 +17,7 @@ import { Ionicons } from "@expo/vector-icons";
 import logo from "../assets/atom.png";
 
 // import * as Font from 'expo-font';
-const ProfileScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
@@ -43,7 +43,7 @@ const ProfileScreen = ({ navigation }) => {
           style={styles.logo}
           style={{ height: 100, width: 100, transform: [{ rotate: spin }] }}
         />
-        <Text style={styles.LogoText}>Profile screen</Text>
+        <Text style={styles.LogoText}>Home screen</Text>
       </View>
     </ImageBackground>
   );
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default HomeScreen;
