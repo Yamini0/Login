@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 function TalkTrainer() {
   return <Text style={styles.backgroundContainer}>Talk-to-trainer-screen</Text>;

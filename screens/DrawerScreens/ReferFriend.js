@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 function ReferFriend() {
   return <Text style={styles.backgroundContainer}>Refer-a-friend-screen</Text>;

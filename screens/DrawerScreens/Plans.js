@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 function Plans() {
   return <Text style={styles.backgroundContainer}>Plans-screen</Text>;
