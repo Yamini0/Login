@@ -26,7 +26,7 @@ function infiniteScroll(dataList) {
     }
 
     this.flatList.scrollToOffset({ animated: true, offset: scrollValue });
-  }, 3000);
+  }, 8000);
 }
 
 const Carousel = ({ data }) => {
@@ -63,7 +63,7 @@ const Carousel = ({ data }) => {
           ])}
         />
 
-        {/*<View style={styles.dotView}>
+        <View style={styles.dotView}>
           {data.map((_, i) => {
             let opacity = position.interpolate({
               inputRange: [i - 1, i, i + 1],
@@ -84,12 +84,12 @@ const Carousel = ({ data }) => {
               />
             );
           })}
-        </View>*/}
+        </View>
       </View>
     );
   }
 
-  console.log("Please provide Images");
+  //console.log("Please provide Images");
   return null;
 };
 
