@@ -1,29 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  ImageBackground,
-  Image,
-  TextInput,
-  Dimensions,
-  TouchableOpacity,
-  Alert,
-  StyleSheet,
-  Text,
-  Animated,
-  Easing,
-  SafeAreaView,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import logo from "../assets/atom.png";
-import Carousel from "../component/Carousel";
-import MusicItem from "../component/MusicItem";
-import { dummyData } from "../apis/Data";
+import { View, StyleSheet, Text, Button, FlatList } from "react-native";
+//import NewsCard from '../Components/NewsCard'
 import { MusicData } from "../apis/MusicData";
-import Music from "../component/Music";
+import MusicItem from "./MusicItem";
 
-// import * as Font from 'expo-font';
-const ProfileScreen = ({ navigation }) => {
+const Music = ({ navigation }) => {
+  // const [news, setNews] = useState([])
   const [music, setMusic] = useState([]);
 
   useEffect(() => {
@@ -62,7 +44,4 @@ const ProfileScreen = ({ navigation }) => {
   );
 };
 
-export default ProfileScreen;
-/*<View>
-      <Carousel data={dummyData} />
-    </View>*/
+export default Music;
