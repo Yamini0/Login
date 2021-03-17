@@ -24,6 +24,7 @@ import Plans from "./screens/DrawerScreens/Plans";
 import ReferFriend from "./screens/DrawerScreens/ReferFriend";
 import TalkTrainer from "./screens/DrawerScreens/TalkTrainer";
 import ManageSub from "./screens/DrawerScreens/ManageSub";
+import Screen from "./component/Screen";
 
 const LoginStack = createStackNavigator({
   Login: {
@@ -52,85 +53,11 @@ const ProfileStack = createStackNavigator({
       ),
     }),
   },
-});
-{
-  /*
-const SettingStack = createStackNavigator({
-  EditProfile: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  PaymentHistory: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  OurPlans: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  Notification: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  ReferAFriend: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  ManageSubscription: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  GiveUsFeedBack: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  TlkToTrainer: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-  LogOut: {
-    screen: SettingScreen,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
+  Screen: {
+    screen: Screen,
   },
 });
-*/
-}
+
 //bottomTab
 const BottomTabPage = createMaterialBottomTabNavigator(
   {
