@@ -14,6 +14,8 @@ import SettingScreen from "./screens/SettingScreen";
 import CoachScreen from "./screens/CoachScreen";
 import ExploreScreen from "./screens/ExploreScreen";
 import HomeScreen from "./screens/HomeScreen";
+import EditProfileScreen from "./screens/EditProfileScreen";
+import BottomPopUp from "./screens/BottomPopUp";
 
 import EditProfile from "./screens/DrawerScreens/EditProfile";
 import Feedback from "./screens/DrawerScreens/Feedback";
@@ -39,7 +41,7 @@ const LoginStack = createStackNavigator({
 
 //profile-stack
 const ProfileStack = createStackNavigator({
-  ProfileScreen: {
+  Profile: {
     screen: ProfileScreen,
     navigationOptions: (props) => ({
       headerLeft: () => (
@@ -51,11 +53,23 @@ const ProfileStack = createStackNavigator({
           <Ionicons name={"md-menu"} size={30} color={"black"} />
         </TouchableOpacity>
       ),
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("EditProfile");
+          }}
+        >
+          <Ionicons name={"create-outline"} size={28} color={"black"} />
+        </TouchableOpacity>
+      ),
     }),
   },
-  Screen: {
-    screen: Screen,
+  EditProfile: {
+    screen: EditProfileScreen,
   },
+  // BottomPopUp: {
+  //   screen: BottomPopUp,
+  // },
 });
 
 //bottomTab
@@ -129,9 +143,7 @@ const DrawerNavigator = createDrawerNavigator(
           },
         },
         drawerIcon: () => {
-          return (
-            <Ionicons name={"md-pencil-outline"} size={20} color={"black"} />
-          );
+          return <Ionicons name={"create-outline"} size={20} color={"black"} />;
         },
         //tabBarActiveTintColor
       },
@@ -256,7 +268,7 @@ const DrawerNavigator = createDrawerNavigator(
 );
 
 const AppNavigator = createSwitchNavigator({
-  Login: { screen: LoginStack },
+  //Login: { screen: LoginStack },
   Tabs: { screen: DrawerNavigator },
 });
 
