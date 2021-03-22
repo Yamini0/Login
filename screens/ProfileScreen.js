@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   SafeAreaView,
@@ -10,20 +10,28 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import EditProfileScreen from "./EditProfileScreen";
+//import { onChange } from "react-native-reanimated";
 
-function ProfileScreen(props, { route, navigation, ChngeImg }) {
-  //console.warn("route", route.params);
-  const { param } = route.params;
-  const editedData = useCallback(() => {
-    //console.warn("editedData", props.updatedData);
-    props.updatedData();
-  }, [ChngeImg]);
+function ProfileScreen(props, { route, navigation }) {
+  const [img, setImg] = useState(null);
+
+  const receivedData = (receivedValue) => {
+    console.warn(receivedValue);
+    setImg(receivedValue);
+    console.warn(setImg(receivedValue));
+  };
+  const handleData = () => {
+    props.navigation.navigate("EditProfile", {
+      onSuccess: receivedData,
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoSection}>
         <View style={{ flexDirection: "row", marginTop: 15 }}>
+          <Text>{receivedData}</Text>
           <Image
-            source={{ uri: editedData }}
+            source={{}} //uri: "https://source.unsplash.com/daily----updatePhoto()"
             size={20}
             style={{ width: 120, height: 120 }}
             imageStyle={{ borderRadius: 60 }}
@@ -66,6 +74,12 @@ function ProfileScreen(props, { route, navigation, ChngeImg }) {
       </View>
 
       <View style={styles.menuWrapper}>
+        <TouchableOpacity onPress={handleData}>
+          <View style={styles.menuItem}>
+            <Ionicons name={"md-person-outline"} size={20} color={"black"} />
+            <Text style={styles.menuItemText}>Edit Profile</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => {}}>
           <View style={styles.menuItem}>
             <Ionicons name={"md-bulb-outline"} size={20} color={"black"} />
