@@ -23,7 +23,7 @@ import { NavigationEvents } from "react-navigation";
 const { width: WIDTH } = Dimensions.get("window");
 
 function EditProfileScreen({ props, navigation }) {
-  const [selectImg, setSelectedImg] = useState("");
+  const [selectImg, setSelectedImg] = useState(null);
   const refvar = useRef(); //botton-screen-reference
 
   const close = () => refvar.current.snapTo(1);
@@ -93,14 +93,11 @@ function EditProfileScreen({ props, navigation }) {
       </TouchableOpacity>
     </View>
   );
+  const receivedValue = navigation.getParam("onSuccess");
 
-  const ChngeImg = selectImg.localUri;
-
-  const updatedData = (ChngeImg) => {
-    console.warn(ChngeImg);
-    navigation.navigate("Profile", {
-      param: ChngeImg,
-    });
+  const updatedData = () => {
+    receivedValue("https://source.unsplash.com/daily");
+    navigation.goBack();
   };
   return (
     <View style={styles.container}>
