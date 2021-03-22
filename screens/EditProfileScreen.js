@@ -16,20 +16,18 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 import BottomSheet from "reanimated-bottom-sheet";
+import { NavigationEvents } from "react-navigation";
 
 //import BottomPopUp from "../screens/BottomPopUp";
 
 const { width: WIDTH } = Dimensions.get("window");
 
-function EditProfileScreen({ navigation }) {
-  const [selectImg, setSelectedImg] = useState(null);
+function EditProfileScreen({ props, navigation }) {
+  const [selectImg, setSelectedImg] = useState("");
   const refvar = useRef(); //botton-screen-reference
 
   const close = () => refvar.current.snapTo(1);
 
-  // useEffect(() => {
-  //   openImage();
-  // }, []);
   //camera
   const openCamera = async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
@@ -42,6 +40,7 @@ function EditProfileScreen({ navigation }) {
     }
     let camerapicker = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
+      aspect: [3, 3],
       quality: 1,
     });
 
@@ -49,7 +48,7 @@ function EditProfileScreen({ navigation }) {
       return;
     }
     setSelectedImg({ localUri: camerapicker.uri });
-    console.log(camerapicker);
+    //console.log(camerapicker);
     close();
   };
   //gallery
@@ -71,10 +70,10 @@ function EditProfileScreen({ navigation }) {
       return;
     }
     setSelectedImg({ localUri: picker.uri });
-    console.log(picker);
+    //console.log(picker);
     close();
   };
-
+  //bottomsheet
   const renderContent = () => (
     <View style={styles.panel}>
       <TouchableOpacity style={styles.panelButton} onPress={() => openCamera()}>
@@ -95,6 +94,14 @@ function EditProfileScreen({ navigation }) {
     </View>
   );
 
+  const ChngeImg = selectImg.localUri;
+
+  const updatedData = (ChngeImg) => {
+    console.warn(ChngeImg);
+    navigation.navigate("Profile", {
+      param: ChngeImg,
+    });
+  };
   return (
     <View style={styles.container}>
       <BottomSheet
@@ -225,7 +232,10 @@ function EditProfileScreen({ navigation }) {
             style={styles.textInput}
           />
         </View>
-        <TouchableOpacity style={styles.commandButton}>
+        <TouchableOpacity
+          style={styles.commandButton}
+          onPress={() => updatedData()}
+        >
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
       </View>
@@ -329,3 +339,6 @@ const styles = StyleSheet.create({
 
 export default EditProfileScreen;
 //"https://source.unsplash.com/daily",
+// selectImg.localUri !== null
+//       ? selectImg.localUri
+//       : "https://source.unsplash.com/daily";

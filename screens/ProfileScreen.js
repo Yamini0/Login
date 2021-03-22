@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   SafeAreaView,
@@ -11,13 +11,19 @@ import { Ionicons } from "@expo/vector-icons";
 
 import EditProfileScreen from "./EditProfileScreen";
 
-function ProfileScreen({ navigation }) {
+function ProfileScreen(props, { route, navigation, ChngeImg }) {
+  //console.warn("route", route.params);
+  const { param } = route.params;
+  const editedData = useCallback(() => {
+    //console.warn("editedData", props.updatedData);
+    props.updatedData();
+  }, [ChngeImg]);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoSection}>
         <View style={{ flexDirection: "row", marginTop: 15 }}>
           <Image
-            source={{ uri: "https://source.unsplash.com/daily" }}
+            source={{ uri: editedData }}
             size={20}
             style={{ width: 120, height: 120 }}
             imageStyle={{ borderRadius: 60 }}
