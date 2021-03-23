@@ -23,7 +23,7 @@ import { NavigationEvents } from "react-navigation";
 const { width: WIDTH } = Dimensions.get("window");
 
 function EditProfileScreen({ props, navigation }) {
-  const [selectImg, setSelectedImg] = useState(null);
+  const [selectImg, setSelectedImg] = useState("");
   const refvar = useRef(); //botton-screen-reference
 
   const close = () => refvar.current.snapTo(1);
@@ -96,7 +96,7 @@ function EditProfileScreen({ props, navigation }) {
   const receivedValue = navigation.getParam("onSuccess");
 
   const updatedData = () => {
-    receivedValue("https://source.unsplash.com/daily");
+    receivedValue(selectImg.localUri);
     navigation.goBack();
   };
   return (
@@ -128,7 +128,7 @@ function EditProfileScreen({ props, navigation }) {
                 alignItems: "center",
               }}
             >
-              {selectImg !== null ? (
+              {selectImg !== "" ? (
                 <ImageBackground
                   source={{
                     uri:
