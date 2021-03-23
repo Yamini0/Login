@@ -10,15 +10,14 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import EditProfileScreen from "./EditProfileScreen";
-//import { onChange } from "react-native-reanimated";
 
 function ProfileScreen(props, { route, navigation }) {
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState("");
 
   const receivedData = (receivedValue) => {
-    console.warn(receivedValue);
-    setImg(receivedValue);
-    console.warn(setImg(receivedValue));
+    setImg({ receivedValue });
+    //console.warn(receivedValue);
+    //console.warn(img.receivedValue);
   };
   const handleData = () => {
     props.navigation.navigate("EditProfile", {
@@ -29,13 +28,22 @@ function ProfileScreen(props, { route, navigation }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoSection}>
         <View style={{ flexDirection: "row", marginTop: 15 }}>
-          <Text>{receivedData}</Text>
-          <Image
-            source={{}} //uri: "https://source.unsplash.com/daily----updatePhoto()"
-            size={20}
-            style={{ width: 120, height: 120 }}
-            imageStyle={{ borderRadius: 60 }}
-          />
+          {img !== "" ? (
+            <Image
+              source={{ uri: img.receivedValue }} //uri: "https://source.unsplash.com/daily----updatePhoto()"
+              size={20}
+              style={{ width: 120, height: 120 }}
+              imageStyle={{ borderRadius: 60 }}
+            />
+          ) : (
+            <Image
+              source={{ uri: "https://source.unsplash.com/daily" }} //uri: "https://source.unsplash.com/daily----updatePhoto()"
+              size={20}
+              style={{ width: 120, height: 120 }}
+              imageStyle={{ borderRadius: 60 }}
+            />
+          )}
+
           <View style={{ marginLeft: 20 }}>
             <Text style={styles.title}>User-Name</Text>
             <Text style={styles.caption}>abcdef@xyz.mnb</Text>
