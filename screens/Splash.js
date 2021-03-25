@@ -28,7 +28,7 @@ const Splash = () => {
         >
           <Animatable.Image
             animation="bounceIn"
-            duration="1500"
+            duration={"1500"}
             source={require("../assets/atom.png")}
             style={{
               width: 100,
