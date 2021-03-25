@@ -8,14 +8,14 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
 //importing Screens
-import Login1 from "./screens/Login1";
+
 import ProfileScreen from "./screens/ProfileScreen";
 import SettingScreen from "./screens/SettingScreen";
 import CoachScreen from "./screens/CoachScreen";
 import ExploreScreen from "./screens/ExploreScreen";
 import HomeScreen from "./screens/HomeScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
-import BottomPopUp from "./screens/BottomPopUp";
+import LoginScreen from "./screens/LoginScreen";
 
 import EditProfile from "./screens/DrawerScreens/EditProfile";
 import Feedback from "./screens/DrawerScreens/Feedback";
@@ -27,17 +27,6 @@ import ReferFriend from "./screens/DrawerScreens/ReferFriend";
 import TalkTrainer from "./screens/DrawerScreens/TalkTrainer";
 import ManageSub from "./screens/DrawerScreens/ManageSub";
 import Screen from "./component/Screen";
-
-const LoginStack = createStackNavigator({
-  Login: {
-    screen: Login1,
-    navigationOptions: {
-      tabBarLabel: "Login Page",
-      color: "#1A5CAD",
-      //tabBarActiveTintColor
-    },
-  },
-});
 
 //profile-stack
 const ProfileStack = createStackNavigator({
@@ -53,25 +42,22 @@ const ProfileStack = createStackNavigator({
           <Ionicons name={"md-menu"} size={30} color={"black"} />
         </TouchableOpacity>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate("EditProfile");
-          }}
-        >
-          <Ionicons name={"create-outline"} size={28} color={"black"} />
-        </TouchableOpacity>
-      ),
     }),
   },
   EditProfile: {
     screen: EditProfileScreen,
   },
-  // BottomPopUp: {
-  //   screen: BottomPopUp,
-  // },
 });
-
+const LoginStack = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      tabBarLabel: "Login Page",
+      color: "#1A5CAD",
+      //tabBarActiveTintColor
+    },
+  },
+});
 //bottomTab
 const BottomTabPage = createMaterialBottomTabNavigator(
   {
@@ -268,7 +254,8 @@ const DrawerNavigator = createDrawerNavigator(
 );
 
 const AppNavigator = createSwitchNavigator({
-  //Login: { screen: LoginStack },
+  Login: { screen: LoginStack },
+  //profile: { screen: BottomTabPage },
   Tabs: { screen: DrawerNavigator },
 });
 
