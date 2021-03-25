@@ -13,29 +13,13 @@ import {
   Easing,
 } from "react-native";
 import logo from "../assets/atom.png";
+import LogoAnimation from "../component/LogoAnimation";
 // import * as Font from 'expo-font';
 const CoachScreen = ({ navigation }) => {
-  const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
-  const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
-
-  useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinAnim, {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    ).start();
-  });
-
   return (
     <ImageBackground style={styles.backgroundContainer}>
       <View style={styles.LogoContainer}>
-        <Animated.Image
+        <Animated.LogoAnimation.Image
           source={logo}
           style={styles.logo}
           style={{ height: 100, width: 100, transform: [{ rotate: spin }] }}

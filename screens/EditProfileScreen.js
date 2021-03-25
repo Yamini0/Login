@@ -9,7 +9,8 @@ import {
   Dimensions,
   Alert,
 } from "react-native";
-
+import { Formik } from "formik";
+import * as yup from "yup";
 import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -22,8 +23,19 @@ import { NavigationEvents } from "react-navigation";
 
 const { width: WIDTH } = Dimensions.get("window");
 
+const validationSchema = yup.object().shape({
+  Name: yup.string().required(),
+  Phone: yup.number().required(),
+  Email: yup.string().required("Required!").email("Not a valid E-mail").min(4),
+  Country: yup.string().required("Required!"),
+});
+
 function EditProfileScreen({ props, navigation }) {
   const [selectImg, setSelectedImg] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
   const refvar = useRef(); //botton-screen-reference
 
   const close = () => refvar.current.snapTo(1);
@@ -182,59 +194,88 @@ function EditProfileScreen({ props, navigation }) {
           </Text>
         </View>
 
-        <View style={styles.action}>
-          <FontAwesome name="user-o" size={18} />
-          <TextInput
-            placeholder="First Name"
-            placeholderTextColor="grey"
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" size={18} />
-          <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="grey"
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <Feather name="phone" size={18} />
-          <TextInput
-            placeholder="Phone"
-            placeholderTextColor="grey"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="envelope-o" size={18} />
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="grey"
-            keyboardType="email-address"
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="globe" size={18} />
-          <TextInput
-            placeholder="Country"
-            placeholderTextColor="grey"
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        <TouchableOpacity
-          style={styles.commandButton}
-          onPress={() => updatedData()}
+        <Formik
+          initialValues={{
+            Name: "",
+            Email: "",
+            Phone: "",
+            Country: "",
+          }}
+          onSubmit={(values) => {
+            updatedData();
+          }}
+          validationSchema={validationSchema}
         >
-          <Text style={styles.panelButtonTitle}>Submit</Text>
-        </TouchableOpacity>
+          {(props) => (
+            <View>
+              <View style={styles.action}>
+                <FontAwesome name="user-o" size={18} />
+                <TextInput
+                  placeholder={"Name"}
+                  placeholderTextColor="grey"
+                  autoCorrect={false}
+                  style={styles.textInput}
+                  onChangeText={props.handleChange("Name")}
+                  value={props.values.FirstName}
+                />
+              </View>
+              <Text style={styles.ErrorMsg}>
+                {props.touched.Name && props.errors.Name}
+              </Text>
+
+              <View style={styles.action}>
+                <Feather name="phone" size={18} />
+                <TextInput
+                  placeholder="Phone"
+                  placeholderTextColor="grey"
+                  keyboardType="number-pad"
+                  autoCorrect={false}
+                  style={styles.textInput}
+                  onChangeText={props.handleChange("Phone")}
+                  value={props.values.Phone}
+                />
+              </View>
+              <Text style={styles.ErrorMsg}>
+                {props.touched.Phone && props.errors.Phone}
+              </Text>
+              <View style={styles.action}>
+                <FontAwesome name="envelope-o" size={18} />
+                <TextInput
+                  placeholder="Email"
+                  placeholderTextColor="grey"
+                  keyboardType="email-address"
+                  autoCorrect={false}
+                  style={styles.textInput}
+                  onChangeText={props.handleChange("Email")}
+                  value={props.values.Email}
+                />
+              </View>
+              <Text style={styles.ErrorMsg}>
+                {props.touched.Email && props.errors.Email}
+              </Text>
+              <View style={styles.action}>
+                <FontAwesome name="globe" size={18} />
+                <TextInput
+                  placeholder="Country"
+                  placeholderTextColor="grey"
+                  autoCorrect={false}
+                  style={styles.textInput}
+                  onChangeText={props.handleChange("Country")}
+                  value={props.values.Country}
+                />
+              </View>
+              <Text style={styles.ErrorMsg}>
+                {props.touched.Country && props.errors.Country}
+              </Text>
+              <TouchableOpacity
+                style={styles.commandButton}
+                onPress={props.handleSubmit}
+              >
+                <Text style={styles.panelButtonTitle}>Submit</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </Formik>
       </View>
     </View>
   );
@@ -328,14 +369,17 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 20,
-    color: "#dddddd",
+    color: "black",
     flexDirection: "row",
     marginBottom: 15,
+  },
+  ErrorMsg: {
+    color: "darkred",
+    paddingLeft: 5,
+    fontSize: 16,
+    fontWeight: "normal",
+    paddingLeft: 45,
   },
 });
 
 export default EditProfileScreen;
-//"https://source.unsplash.com/daily",
-// selectImg.localUri !== null
-//       ? selectImg.localUri
-//       : "https://source.unsplash.com/daily";
