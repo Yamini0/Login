@@ -26,23 +26,11 @@ import Plans from "./screens/DrawerScreens/Plans";
 import ReferFriend from "./screens/DrawerScreens/ReferFriend";
 import TalkTrainer from "./screens/DrawerScreens/TalkTrainer";
 import ManageSub from "./screens/DrawerScreens/ManageSub";
-import Screen from "./component/Screen";
 
 //profile-stack
 const ProfileStack = createStackNavigator({
   Profile: {
     screen: ProfileScreen,
-    navigationOptions: (props) => ({
-      headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.toggleDrawer();
-          }}
-        >
-          <Ionicons name={"md-menu"} size={30} color={"black"} />
-        </TouchableOpacity>
-      ),
-    }),
   },
   EditProfile: {
     screen: EditProfileScreen,
@@ -58,11 +46,28 @@ const LoginStack = createStackNavigator({
     },
   },
 });
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: (props) => ({
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.toggleDrawer();
+          }}
+        >
+          <Ionicons name={"md-menu"} size={30} color={"black"} />
+        </TouchableOpacity>
+      ),
+    }),
+  },
+});
 //bottomTab
 const BottomTabPage = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: HomeStack,
       navigationOptions: {
         tabBarIcon: () => {
           return <Ionicons name={"md-home"} size={22} color={"white"} />;
