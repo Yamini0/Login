@@ -9,15 +9,14 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import EditProfileScreen from "./EditProfileScreen";
-
 function ProfileScreen(props, { route, navigation }) {
   const [img, setImg] = useState("");
+  const [] = useState("");
+  const [] = useState("");
+  const [] = useState("");
 
   const receivedData = (receivedValue) => {
     setImg({ receivedValue });
-    //console.warn(receivedValue);
-    //console.warn(img.receivedValue);
   };
   const handleData = () => {
     props.navigation.navigate("EditProfile", {
