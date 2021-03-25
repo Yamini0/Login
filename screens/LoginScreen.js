@@ -13,24 +13,12 @@ import {
 import { Formik } from "formik";
 import * as yup from "yup";
 
-//import Validation from "../component/Validation";
+import { LoginSchema } from "../component/Validation";
 import LogoAnimation from "../component/LogoAnimation";
 
 import { Ionicons } from "@expo/vector-icons";
 const { width: WIDTH } = Dimensions.get("window");
 
-const validationSchema = yup.object().shape({
-  Email: yup
-    .string()
-    .required("Required!")
-    .email("Not a valid E-mail")
-    .min(4)
-    .trim(),
-  Password: yup
-    .string()
-    .required("Required!")
-    .min(6, "Minimum 6 charaters are required"),
-});
 const LoginScreen = ({ navigation }) => {
   return (
     <ImageBackground
@@ -43,9 +31,9 @@ const LoginScreen = ({ navigation }) => {
         <Formik
           initialValues={{ Email: "", Password: "" }} //initial state of email & password_change
           onSubmit={(values) => {
-            navigation.navigate("Profile");
+            navigation.navigate("Home");
           }} //values store the user input for us...values is an object
-          validationSchema={validationSchema} //having all validation objects
+          validationSchema={LoginSchema} //having all validation objects
         >
           {(
             props //a function returning jsx
