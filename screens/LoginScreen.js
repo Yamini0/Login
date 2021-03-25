@@ -5,46 +5,47 @@ import {
   Button,
   View,
   TouchableOpacity,
-  ActivityIndicator,
   ImageBackground,
   StyleSheet,
-  Animated,
   Text,
   Dimensions,
 } from "react-native";
 import { Formik } from "formik";
-import logo from "../assets/atom.png";
-//for icons
+import * as yup from "yup";
+
+//import Validation from "../component/Validation";
+import LogoAnimation from "../component/LogoAnimation";
+
 import { Ionicons } from "@expo/vector-icons";
 const { width: WIDTH } = Dimensions.get("window");
 
-//animation
-import * as Animatable from "react-native-animatable";
-
+const validationSchema = yup.object().shape({
+  Email: yup
+    .string()
+    .required("Required!")
+    .email("Not a valid E-mail")
+    .min(4)
+    .trim(),
+  Password: yup
+    .string()
+    .required("Required!")
+    .min(6, "Minimum 6 charaters are required"),
+});
 const LoginScreen = ({ navigation }) => {
-  const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
-  const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
   return (
     <ImageBackground
       source={require("../images/Login_bg.jpg")}
       style={styles.backgroundContainer}
     >
-      <View style={styles.LogoContainer}>
-        <Animated.Image
-          source={logo}
-          style={styles.logo}
-          style={{ height: 100, width: 100, transform: [{ rotate: spin }] }}
-        />
-        <Text style={styles.LogoText}>React-Native</Text>
-      </View>
+      <LogoAnimation />
 
       <View style={{ margin: 12 }}>
         <Formik
-          initialValues={{ email: "", password: "" }} //initial state of email & password_change
-          onSubmit={(values) => console.warn(values)} //values store the user input for us
+          initialValues={{ Email: "", Password: "" }} //initial state of email & password_change
+          onSubmit={(values) => {
+            navigation.navigate("Profile");
+          }} //values store the user input for us...values is an object
+          validationSchema={validationSchema} //having all validation objects
         >
           {(
             props //a function returning jsx
@@ -60,10 +61,14 @@ const LoginScreen = ({ navigation }) => {
                 <TextInput
                   style={styles.input}
                   placeholder={"E-mail"}
+                  onBlur={props.handleBlur("email")}
                   placeholderTextColor={"black"}
-                  onChangeText={props.handleChange("email")}
-                  value={props.values.email} //jb onsubmit is done this will chnge the email field with initial value
+                  onChangeText={props.handleChange("Email")}
+                  value={props.values.Email} //jb onsubmit is done this will chnge the email field with initial value
                 />
+                <Text style={styles.ErrorMsg}>
+                  {props.touched.Email && props.errors.Email}
+                </Text>
               </View>
 
               <View style={styles.inputContainer}>
@@ -77,9 +82,12 @@ const LoginScreen = ({ navigation }) => {
                   style={styles.input}
                   placeholder={"Password"}
                   placeholderTextColor={"black"}
-                  onChangeText={props.handleChange("password")}
-                  value={props.values.password} //jb onsubmit is done this will chnge the email field with initial value
+                  onChangeText={props.handleChange("Password")}
+                  value={props.values.Password} //jb onsubmit is done this will chnge the email field with initial value
                 />
+                <Text style={styles.ErrorMsg}>
+                  {props.touched.Password && props.errors.Password}
+                </Text>
               </View>
               <View style={styles.inputContainer}>
                 <TouchableOpacity
@@ -138,7 +146,6 @@ const styles = StyleSheet.create({
     top: 8,
     left: 37,
   },
-
   btnLogin: {
     width: WIDTH - 295,
     marginLeft: 90,
@@ -155,6 +162,13 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textAlign: "center",
     fontWeight: "bold",
+  },
+  ErrorMsg: {
+    color: "darkred",
+    paddingLeft: 5,
+    fontSize: 16,
+    fontWeight: "normal",
+    paddingLeft: 45,
   },
 });
 export default LoginScreen;
