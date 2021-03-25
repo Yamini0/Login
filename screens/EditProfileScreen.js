@@ -15,7 +15,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-
+import { EditProfileSchema } from "../component/Validation";
 import BottomSheet from "reanimated-bottom-sheet";
 import { NavigationEvents } from "react-navigation";
 
@@ -23,18 +23,11 @@ import { NavigationEvents } from "react-navigation";
 
 const { width: WIDTH } = Dimensions.get("window");
 
-const validationSchema = yup.object().shape({
-  Name: yup.string().required(),
-  Phone: yup.number().required(),
-  Email: yup.string().required("Required!").email("Not a valid E-mail").min(4),
-  Country: yup.string().required("Required!"),
-});
-
 function EditProfileScreen({ props, navigation }) {
   const [selectImg, setSelectedImg] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [email, setEmail] = useState("");
 
   const refvar = useRef(); //botton-screen-reference
 
@@ -106,9 +99,11 @@ function EditProfileScreen({ props, navigation }) {
     </View>
   );
   const receivedValue = navigation.getParam("onSuccess");
+  const editedData = navigation.getParam("onSuccess");
 
-  const updatedData = () => {
+  const updatedData = (values) => {
     receivedValue(selectImg.localUri);
+    editedData(values);
     navigation.goBack();
   };
   return (
@@ -202,9 +197,9 @@ function EditProfileScreen({ props, navigation }) {
             Country: "",
           }}
           onSubmit={(values) => {
-            updatedData();
+            updatedData(values);
           }}
-          validationSchema={validationSchema}
+          validationSchema={EditProfileSchema}
         >
           {(props) => (
             <View>
@@ -216,7 +211,7 @@ function EditProfileScreen({ props, navigation }) {
                   autoCorrect={false}
                   style={styles.textInput}
                   onChangeText={props.handleChange("Name")}
-                  value={props.values.FirstName}
+                  value={props.values.Name}
                 />
               </View>
               <Text style={styles.ErrorMsg}>
