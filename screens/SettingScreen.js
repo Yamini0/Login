@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import logo from "../assets/atom.png";
 // import * as Font from 'expo-font';
-const ProfileScreen = ({ navigation }) => {
+const SettingScreeen = ({ navigation }) => {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default SettingScreeen;
