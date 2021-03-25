@@ -15,7 +15,7 @@ import {
 import logo from "../assets/atom.png";
 import LogoAnimation from "../component/LogoAnimation";
 // import * as Font from 'expo-font';
-const CoachScreen = ({ navigation }) => {
+const ExploreScreen = ({ navigation }) => {
   return (
     <ImageBackground style={styles.backgroundContainer}>
       <View style={styles.LogoContainer}>
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CoachScreen;
+export default ExploreScreen;
