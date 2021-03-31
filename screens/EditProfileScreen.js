@@ -23,7 +23,7 @@ import { NavigationEvents } from "react-navigation";
 
 const { width: WIDTH } = Dimensions.get("window");
 
-function EditProfileScreen({ props, navigation }) {
+function EditProfileScreen(props, { route, navigation }) {
   const [selectImg, setSelectedImg] = useState("");
   // const [name, setName] = useState("");
   // const [phone, setPhone] = useState("");
@@ -98,14 +98,14 @@ function EditProfileScreen({ props, navigation }) {
       </TouchableOpacity>
     </View>
   );
-  const receivedValue = navigation.getParam("onSuccess");
-  const editedData = navigation.getParam("onSuccess");
+  // const receivedValue = route.param.onSuccess;
+  // const editedData = route.param.onSuccess;
 
-  const updatedData = (values) => {
-    receivedValue(selectImg.localUri);
-    editedData(values);
-    navigation.goBack();
-  };
+  // const updatedData = (values) => {
+  //   receivedValue(selectImg.localUri);
+  //   editedData(values);
+  //   navigation.goBack();
+  // };
   return (
     <View style={styles.container}>
       <BottomSheet
@@ -197,9 +197,10 @@ function EditProfileScreen({ props, navigation }) {
             Country: "",
           }}
           onSubmit={(values) => {
-            updatedData(values);
+            navigation.goBack();
+            // updatedData(values);
           }}
-          validationSchema={EditProfileSchema}
+          //validationSchema={EditProfileSchema}
         >
           {(props) => (
             <View>

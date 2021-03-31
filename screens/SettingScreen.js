@@ -12,34 +12,14 @@ import {
   Animated,
   Easing,
 } from "react-native";
+import LogoAnimation from "../component/LogoAnimation";
 import logo from "../assets/atom.png";
 // import * as Font from 'expo-font';
 const SettingScreeen = ({ navigation }) => {
-  const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
-  const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
-
-  useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinAnim, {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    ).start();
-  });
-
   return (
     <ImageBackground style={styles.backgroundContainer}>
       <View style={styles.LogoContainer}>
-        <Animated.Image
-          source={logo}
-          style={styles.logo}
-          style={{ height: 100, width: 100, transform: [{ rotate: spin }] }}
-        />
+        <LogoAnimation />
         <Text style={styles.LogoText}>SettingScreeen</Text>
       </View>
     </ImageBackground>

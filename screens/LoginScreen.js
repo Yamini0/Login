@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   SafeAreaView,
   TextInput,
@@ -11,15 +11,17 @@ import {
   Dimensions,
 } from "react-native";
 import { Formik } from "formik";
-import * as yup from "yup";
 
 import { LoginSchema } from "../component/Validation";
 import LogoAnimation from "../component/LogoAnimation";
-
+import { AuthContext } from "../component/Context";
 import { Ionicons } from "@expo/vector-icons";
+import SettingScreen from "./SettingScreen";
+import DrawerNavigator from "../DrawerNavigator";
 const { width: WIDTH } = Dimensions.get("window");
 
 const LoginScreen = ({ navigation }) => {
+  const { signIn } = useContext(AuthContext);
   return (
     <ImageBackground
       source={require("../images/Login_bg.jpg")}
@@ -32,6 +34,7 @@ const LoginScreen = ({ navigation }) => {
           initialValues={{ Email: "", Password: "" }} //initial state of email & password_change
           onSubmit={(values) => {
             navigation.navigate("Home");
+            signIn();
           }} //values store the user input for us...values is an object
           validationSchema={LoginSchema} //having all validation objects
         >
@@ -83,6 +86,22 @@ const LoginScreen = ({ navigation }) => {
                   onPress={props.handleSubmit}
                 >
                   <Text style={styles.Text}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    // navigation.navigate("SettingScreen");
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      marginTop: 20,
+                    }}
+                  >
+                    Sign-Up
+                  </Text>
                 </TouchableOpacity>
               </View>
             </SafeAreaView>

@@ -7,11 +7,13 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 function ProfileScreen(props, { route, navigation }) {
   const [img, setImg] = useState("");
   const [data, setData] = useState("");
+  const { colors } = useTheme();
 
   const receivedData = (receivedValue, editedData) => {
     setImg({ receivedValue });
@@ -37,7 +39,7 @@ function ProfileScreen(props, { route, navigation }) {
             />
           ) : (
             <Image
-              source={{ uri: "https://source.unsplash.com/daily" }} //uri: "https://source.unsplash.com/daily----updatePhoto()"
+              source={{ uri: "https://source.unsplash.com/daily" }}
               size={20}
               style={{ width: 120, height: 120 }}
               imageStyle={{ borderRadius: 60 }}
@@ -46,9 +48,13 @@ function ProfileScreen(props, { route, navigation }) {
 
           <View style={{ marginLeft: 20 }}>
             {img !== "" ? (
-              <Text style={styles.title}>{img.receivedValue.Name} </Text>
+              <Text style={({ color: colors.text }, styles.title)}>
+                {img.receivedValue.Name}{" "}
+              </Text>
             ) : (
-              <Text style={styles.title}>User-Name</Text>
+              <Text style={({ color: colors.text }, styles.title)}>
+                User-Name
+              </Text>
             )}
           </View>
         </View>

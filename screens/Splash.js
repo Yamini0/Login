@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Dimensions,
-  ImageBackground,
-  AsyncStorage,
-  Text,
-} from "react-native";
+import { View, StyleSheet, ImageBackground, Text } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 const Splash = () => {
