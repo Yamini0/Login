@@ -1,6 +1,12 @@
 import "react-native-gesture-handler";
-import React from "react";
-import { View, Icon, TouchableOpacity, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Icon,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -17,7 +23,7 @@ import HomeScreen from "./screens/HomeScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 
-import EditProfile from "./screens/DrawerScreens/EditProfile";
+// import EditProfile from "./screens/DrawerScreens/EditProfile";
 import Feedback from "./screens/DrawerScreens/Feedback";
 import Logout from "./screens/DrawerScreens/Logout";
 import Notification from "./screens/DrawerScreens/Notification";
@@ -44,6 +50,9 @@ const LoginStack = createStackNavigator({
       color: "#1A5CAD",
       //tabBarActiveTintColor
     },
+  },
+  SettingScreen: {
+    screen: SettingScreen,
   },
 });
 
@@ -81,7 +90,7 @@ const BottomTabPage = createMaterialBottomTabNavigator(
         tabBarIcon: () => {
           return <Ionicons name={"md-search"} size={22} color={"white"} />;
         },
-        headerTitle: "Explore",
+
         tabBarColor: "#4A7023",
       },
     },
@@ -122,23 +131,7 @@ const DrawerNavigator = createDrawerNavigator(
         drawerLabel: "Settings",
       },
     },
-    EditProfile: {
-      screen: EditProfile,
-      navigationOptions: {
-        drawerLabel: "Edit profile",
-        fontWeight: "bold",
-        contentOptions: {
-          activeTintColor: "#e91e63",
-          itemsContainerStyle: {
-            marginVertical: 0,
-          },
-        },
-        drawerIcon: () => {
-          return <Ionicons name={"create-outline"} size={20} color={"black"} />;
-        },
-        //tabBarActiveTintColor
-      },
-    },
+
     PaymentHistory: {
       screen: PaymentHistory,
       navigationOptions: {
@@ -258,10 +251,34 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 
-const AppNavigator = createSwitchNavigator({
-  Login: { screen: LoginStack },
-  //profile: { screen: BottomTabPage },
-  Tabs: { screen: DrawerNavigator },
-});
+// const AppNavigator = createSwitchNavigator({
+//   Login: { screen: LoginStack },
+//   //profile: { screen: BottomTabPage },
+//   Tabs: { screen: DrawerNavigator },
+// });
+
+const AppNavigator = () => {
+  // const [isLoading, setisLoading] = useState(true);
+  // const [userToken, setUserToken] = useState(null);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setisLoading(false);
+  //   }, 1000);
+  // }, []);
+
+  // if (isLoading) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   );
+  // }
+  createSwitchNavigator({
+    Login: { screen: LoginStack },
+    //profile: { screen: BottomTabPage },
+    Tabs: { screen: DrawerNavigator },
+  });
+};
 
 export default createAppContainer(AppNavigator);

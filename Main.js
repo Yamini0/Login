@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Splash from "./screens/Splash";
-import AppNavigator from "./Navigation";
+
+import LoginStack from "./Stack/LoginStack";
 
 export default function Main() {
   const [splash, setSplash] = useState(true);
@@ -10,5 +11,5 @@ export default function Main() {
     }, 3000);
   }, []);
 
-  return splash ? <Splash /> : <AppNavigator />;
+  return splash ? <Splash /> : <LoginStack />;
 }

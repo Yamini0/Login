@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Animated, Easing, View, Image, Text, StyleSheet } from "react-native";
 import logo from "../assets/atom.png";
-const LogoAnimation = ({ navigation }) => {
+const LogoAnimation = () => {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
