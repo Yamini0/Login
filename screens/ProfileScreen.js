@@ -11,25 +11,26 @@ import { Ionicons } from "@expo/vector-icons";
 
 function ProfileScreen(props, { route, navigation }) {
   const [img, setImg] = useState("");
-  const [] = useState("");
-  const [] = useState("");
-  const [] = useState("");
+  const [data, setData] = useState("");
 
-  const receivedData = (receivedValue) => {
+  const receivedData = (receivedValue, editedData) => {
     setImg({ receivedValue });
+    setData({ editedData });
+    console.warn(img.receivedValue);
   };
   const handleData = () => {
     props.navigation.navigate("EditProfile", {
       onSuccess: receivedData,
     });
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoSection}>
         <View style={{ flexDirection: "row", marginTop: 15 }}>
           {img !== "" ? (
             <Image
-              source={{ uri: img.receivedValue }} //uri: "https://source.unsplash.com/daily----updatePhoto()"
+              source={{ uri: img.receivedValue }}
               size={20}
               style={{ width: 120, height: 120 }}
               imageStyle={{ borderRadius: 60 }}
@@ -44,8 +45,11 @@ function ProfileScreen(props, { route, navigation }) {
           )}
 
           <View style={{ marginLeft: 20 }}>
-            <Text style={styles.title}>User-Name</Text>
-            <Text style={styles.caption}>abcdef@xyz.mnb</Text>
+            {img !== "" ? (
+              <Text style={styles.title}>{img.receivedValue.Name} </Text>
+            ) : (
+              <Text style={styles.title}>User-Name</Text>
+            )}
           </View>
         </View>
       </View>
@@ -53,29 +57,49 @@ function ProfileScreen(props, { route, navigation }) {
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
           <Ionicons name={"location-outline"} size={18} color="#777777" />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>
-            New Delhi, India
-          </Text>
+          {img !== "" ? (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              {img.receivedValue.Country}
+            </Text>
+          ) : (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              Default-country name
+            </Text>
+          )}
         </View>
         <View style={styles.row}>
           <Ionicons name={"call-outline"} size={18} color="#777777" />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>
-            +91-1234567897
-          </Text>
+          {img !== "" ? (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              {img.receivedValue.Phone}
+            </Text>
+          ) : (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              Default-Phone no
+            </Text>
+          )}
         </View>
         <View style={styles.row}>
           <Ionicons name={"mail-outline"} size={18} color="#777777" />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>abc@xyz.nmb</Text>
+          {img !== "" ? (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              {img.receivedValue.Email}
+            </Text>
+          ) : (
+            <Text style={{ color: "#777777", marginLeft: 20 }}>
+              Default-Email
+            </Text>
+          )}
         </View>
       </View>
 
       <View style={styles.infoBoxWrapper}>
         <View style={styles.infoBox}>
-          <Text style={styles.title}>3</Text>
+          <Text style={styles.subtitle}>3</Text>
           <Text style={styles.caption}>Your Courses</Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.title}>6</Text>
+          <Text style={styles.subtitle}>6</Text>
           <Text style={styles.caption}>Wishlist</Text>
         </View>
       </View>
@@ -131,8 +155,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 15,
+    marginTop: 45,
     marginBottom: 5,
+  },
+  subtitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 15,
   },
   caption: {
     fontSize: 14,
