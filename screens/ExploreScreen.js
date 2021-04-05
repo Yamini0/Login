@@ -9,21 +9,23 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
+
 import { Ionicons as Icon } from "@expo/vector-icons";
 import styles from "../component/ExploreStyles";
-import * as data from "../apis/Food.json";
+import { FoodData as data } from "../apis/FoodData.js";
 import Food from "../component/Food";
 import CheckOut from "../component/CheckOut";
 
-const URL = JSON.stringify(data.Url);
 const ExploreScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
+
       <View style={styles.header}>
         <View style={styles.image}>
-          <Image source={require("../images/cherry0.png")} size={100} />
+          <Image source={data.image} />
         </View>
         <View style={styles.dotView}>
           <Animated.View style={styles.dot} />
@@ -66,7 +68,7 @@ const ExploreScreen = ({ navigation }) => {
           >
             {data.Body}
           </Text>
-          {/* <Text style={styles.viewmore}>View more</Text> */}
+          <Text style={styles.viewmore}>View more</Text>
         </View>
         <View style={styles.addtocart}>
           <Icon name="heart" size={42} color="#fd2d59" />
@@ -76,23 +78,10 @@ const ExploreScreen = ({ navigation }) => {
         </View>
         <View>
           <Text style={styles.subtitle}>Similar Products</Text>
-          <Food />
-        </View>
-        <View>
-          <TouchableOpacity style={styles.Checkoutbtn}>
-            <Text style={styles.checkoutbtntext1}>{data.Price}</Text>
-            <Text style={styles.checkoutbtntext2}>Check Out</Text>
-            <Icon
-              name="arrow-forward-outline"
-              color="white"
-              style={styles.checkouticon}
-            />
-          </TouchableOpacity>
+          <Food data={data} />
         </View>
       </View>
-      {/* <View styles={styles.Checkoutcontainer}>
-        <CheckOut />
-      </View> */}
+      <CheckOut data={data} />
     </View>
   );
 };

@@ -35,6 +35,7 @@ const BottomNavigator = ({ navigation }) => {
         component={ExploreScreen}
         options={{
           tabBarLabel: "Explore",
+          tabBarVisible: false,
           tabBarIcon: ({ color }) => (
             <Ionicons name={"md-search"} size={22} color={"white"} />
           ),

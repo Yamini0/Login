@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Dimensions,
-  Animated,
-  Image,
-  FlatList,
-  ScrollView,
-  StatusBar,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import * as data from "../apis/Food.json";
+import { Ionicons as Icon } from "@expo/vector-icons";
 import styles from "./ExploreStyles";
-const CheckOut = () => {
+const CheckOut = (props, { data }) => {
   return (
-    <View style={styles.viewsize}>
-      <Text>Rs.250</Text>
-      <TouchableOpacity>
-        <Text>Check Out</Text>
+    <View style={styles.Checkout}>
+      <TouchableOpacity style={styles.Checkoutbtn}>
+        <Text style={styles.checkoutbtntext1}>{props.data.Price}</Text>
+        <Text style={styles.checkoutbtntext2}>Check Out</Text>
+        <Icon
+          name="arrow-forward-outline"
+          color="white"
+          style={styles.checkouticon}
+        />
       </TouchableOpacity>
     </View>
   );

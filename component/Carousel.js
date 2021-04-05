@@ -12,23 +12,6 @@ import CarouselItem from "./CarouselItem";
 const { width, heigth } = Dimensions.get("window");
 let flatList;
 
-function infiniteScroll(dataList) {
-  const numberOfData = dataList.length;
-  let scrollValue = 0,
-    scrolled = 0;
-
-  setInterval(function () {
-    scrolled++;
-    if (scrolled < numberOfData) scrollValue = scrollValue + width;
-    else {
-      scrollValue = 0;
-      scrolled = 0;
-    }
-
-    //this.flatList.scrollToOffset({ animated: true, offset: scrollValue });
-  }, 3000);
-}
-
 const Carousel = ({ data }) => {
   const scrollX = new Animated.Value(0);
   let position = Animated.divide(scrollX, width);
@@ -38,6 +21,23 @@ const Carousel = ({ data }) => {
     setDataList(data);
     infiniteScroll(dataList);
   });
+
+  function infiniteScroll(dataList) {
+    const numberOfData = dataList.length;
+    let scrollValue = 0,
+      scrolled = 0;
+
+    setInterval(function () {
+      scrolled++;
+      if (scrolled < numberOfData) scrollValue = scrollValue + width;
+      else {
+        scrollValue = 0;
+        scrolled = 0;
+      }
+
+      //this.flatList.scrollToOffset({ animated: true, offset: scrollValue });
+    }, 3000);
+  }
 
   if (data && data.length) {
     return (
