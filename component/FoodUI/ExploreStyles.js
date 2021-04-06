@@ -106,9 +106,11 @@ export default StyleSheet.create({
     color: "#888c97",
     fontSize: 18,
   },
-  //   viewmore: {
-  //     flexDirection: "row",
-  //   },
+  viewmore: {
+    color: "#3ea806",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   addtocart: {
     margin: 10,
     marginTop: 16,

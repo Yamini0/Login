@@ -1,13 +1,6 @@
-import React, { useMemo, useState, useEffect } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  View,
-  Image,
-  ScrollView,
-} from "react-native";
-import FoodItem from "./FoodItem";
+import React from "react";
+import { View, Image, ScrollView, Text } from "react-native";
+
 const Food = (props, { data }) => {
   return (
     <View style={{ height: 180, marginTop: 10 }}>
@@ -24,6 +17,7 @@ const Food = (props, { data }) => {
                 margin: 5,
               }}
             />
+            <Text>Japanese Cherry</Text>
           </View>
         </View>
         <View style={{ height: 150, width: 150 }}>
@@ -33,11 +27,12 @@ const Food = (props, { data }) => {
               style={{
                 flex: 1,
                 width: null,
-                margin: 5,
                 height: null,
                 resizeMode: "cover",
+                margin: 5,
               }}
             />
+            <Text>American Cherry</Text>
           </View>
         </View>
         <View style={{ height: 150, width: 150 }}>
@@ -47,25 +42,12 @@ const Food = (props, { data }) => {
               style={{
                 flex: 1,
                 width: null,
-                margin: 5,
                 height: null,
                 resizeMode: "cover",
-              }}
-            />
-          </View>
-        </View>
-        <View style={{ height: 150, width: 150 }}>
-          <View style={{ flex: 2 }}>
-            <Image
-              source={props.data.Url1}
-              style={{
-                flex: 1,
-                width: null,
                 margin: 5,
-                height: null,
-                resizeMode: "cover",
               }}
             />
+            <Text>Indian Cherry</Text>
           </View>
         </View>
       </ScrollView>

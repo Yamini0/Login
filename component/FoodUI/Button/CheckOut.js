@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import * as data from "../apis/Food.json";
 import { Ionicons as Icon } from "@expo/vector-icons";
-import styles from "./ExploreStyles";
+import styles from "../ExploreStyles";
 const CheckOut = (props, { data }) => {
   return (
     <View style={styles.Checkout}>
