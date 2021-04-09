@@ -13,7 +13,7 @@ import Food from "./Food";
 const FoodFooter = (props, { data }) => {
   return (
     <View style={styles.footer}>
-      <Text style={styles.title}>{props.data.Title}</Text>
+      <Text style={styles.title}>{props.data.title}</Text>
       <View style={styles.priceContainer}>
         <PriceContainer data={props.data} />
         <FreeShipBtn />

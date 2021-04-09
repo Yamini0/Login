@@ -6,8 +6,8 @@ import styles from "./ExploreStyles";
 export default PriceContainer = (props, { data }) => {
   return (
     <View style={{ flexDirection: "row" }}>
-      <Text style={styles.price}>{props.data.OfferPrice}</Text>
-      <Text style={styles.canceledprice}>{props.data.Price} </Text>
+      <Text style={styles.price}>{props.data.offerPrice}</Text>
+      <Text style={styles.canceledprice}>{props.data.price} </Text>
     </View>
   );
 };

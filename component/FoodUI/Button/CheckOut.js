@@ -6,7 +6,7 @@ const CheckOut = (props, { data }) => {
   return (
     <View style={styles.Checkout}>
       <TouchableOpacity style={styles.Checkoutbtn}>
-        <Text style={styles.checkoutbtntext1}>{props.data.Price}</Text>
+        <Text style={styles.checkoutbtntext1}>{props.data.price}</Text>
         <Text style={styles.checkoutbtntext2}>Check Out</Text>
         <Icon
           name="arrow-forward-outline"

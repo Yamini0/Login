@@ -33,7 +33,7 @@ const Description = (props, { data }) => {
         numberOfLines={numLines}
         ellipsizeMode="tail"
       >
-        {props.data.Body}
+        {props.data.description}
       </Text>
       {showMoreButton ? (
         <Text onPress={toggleTextShown} style={styles.viewmore}>
