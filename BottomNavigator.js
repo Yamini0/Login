@@ -23,7 +23,7 @@ const BottomNavigator = ({ navigation }) => {
         name="Home"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: ".",
           tabBarIcon: ({ color }) => (
             <Ionicons name={"md-home"} size={22} color={"white"} />
           ),
@@ -34,7 +34,7 @@ const BottomNavigator = ({ navigation }) => {
         name="Explore"
         component={ExploreScreen}
         options={{
-          tabBarLabel: "Explore",
+          tabBarLabel: ".",
           tabBarVisible: false,
           tabBarIcon: ({ color }) => (
             <Ionicons name={"md-search"} size={22} color={"white"} />
@@ -46,7 +46,7 @@ const BottomNavigator = ({ navigation }) => {
         name="Coach"
         component={CoachScreen}
         options={{
-          tabBarLabel: "Coach",
+          tabBarLabel: ".",
           tabBarIcon: ({ color }) => (
             <Ionicons name={"md-book"} size={22} color={"white"} />
           ),
@@ -57,7 +57,7 @@ const BottomNavigator = ({ navigation }) => {
         name="Profile"
         component={ProfileStackScreen}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: ".",
           tabBarIcon: ({ color }) => (
             <Ionicons name={"md-person"} size={22} color={"white"} />
           ),
